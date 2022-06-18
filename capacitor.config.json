@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "alert-service",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

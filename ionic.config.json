@@ -1,0 +1,8 @@
+{
+  "name": "alert-service",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "45f3d331"
+}

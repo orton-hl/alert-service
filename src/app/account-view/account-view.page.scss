@@ -1,0 +1,21 @@
+ion-card-content {
+  > div {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    grid-gap: .5rem;
+  }
+}
+.label {
+  display: inline-block;
+  width: 10rem;
+  grid-column: 1;
+}
+
+.value {
+  grid-column: 2;
+}
+
+.alert__conatiner{
+    width: 60%;
+    margin: auto;
+}

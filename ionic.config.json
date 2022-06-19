@@ -1,7 +1,10 @@
 {
   "name": "alert-service",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {
+      "enabled": false
+    },
+    "cordova": {}
   },
   "type": "angular",
   "id": "45f3d331"

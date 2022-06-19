@@ -1,0 +1,50 @@
+<app-header title="Account View" ></app-header>
+
+<ion-content>
+  <section *ngIf="isUser" class="userView" >
+    <ion-card  >
+      <ion-card-header>
+        <ion-card-subtitle>User</ion-card-subtitle>
+        <ion-card-title>{{this.user.username}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content> 
+         <div>
+         <span class="label">Firstname  </span>  <span class="value">:  {{user?.firstname  }}</span> 
+         <span class="label">Lastname   </span>  <span class="value">:  {{user?.lastname   }}</span> 
+         <span class="label">Phone number</span>  <span class="value">: {{user?.phoneNumber}}</span> 
+         <span class="label">Email      </span>  <span class="value">:  {{user?.email      }}</span> 
+         <span class="label">Address    </span>  <span class="value">:  {{user?.address    }}</span>
+         <span class="label">Postal code </span> <span class="value">:  {{user?.postalCode }}</span> 
+         </div>
+      </ion-card-content>
+    </ion-card>
+
+    <div  class="alert__conatiner">
+      <ion-button [routerLink]="['/account-view/alerts-view']" expand="block" color="danger">Alerts</ion-button>
+    </div>
+
+  </section>
+
+  <section *ngIf="!isUser" class="userView" >
+    <ion-card  >
+      <ion-card-header>
+        <ion-card-subtitle>Client</ion-card-subtitle>
+        <ion-card-title>{{this.user.username}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content> 
+         <div>
+         <span class="label">Key  </span>  <span class="value">: {{user.key  }}</span> 
+         <span class="label">Name   </span>  <span class="value">: {{user.name   }}</span> 
+         <span class="label">Address    </span>  <span class="value">: {{user.address    }}</span>
+         <span class="label">Postal code </span> <span class="value">: {{user.postalCode }}</span> 
+         </div>
+      </ion-card-content>
+    </ion-card>
+
+    <div  class="alert__conatiner">
+      <ion-button [routerLink]="['/account-view/alerts-view']" expand="block" color="danger">View Alert History</ion-button>
+    </div>
+
+  </section>
+
+</ion-content>

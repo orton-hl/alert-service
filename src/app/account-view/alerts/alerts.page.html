@@ -1,0 +1,101 @@
+<app-header title="Alerts"></app-header>
+<ion-content>
+  <section class="alerts_page">
+    <div class="raise-alert__conatiner">
+      <ion-button
+        [routerLink]="['/account-view/alerts-view']"
+        expand="block"
+        color="danger"
+        (click)="toggleSendModal()"
+        >Raise Alert</ion-button
+      >
+    </div>
+
+    <ion-list>
+      <ion-card *ngFor="let alert of alerts" (click)="toggleModal(alert)">
+        <ion-card-content>
+          <div class="alert__card">
+            <span>time stamps</span>
+            <span>Description</span>
+            <span [ngClass]=" alert.isResolved ? 'resolved' : 'unresolved'"></span>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </section>
+
+  <ion-modal [isOpen]="showAlert" (click)="toggleModal(undefined)">
+    <ng-template>
+      <div class="modal">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Alert</ion-card-subtitle>
+            <ion-card-title>Card Title</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-card-subtitle>Target Responder</ion-card-subtitle>
+            {{selectedAlert?.userId}}
+          </ion-card-content>
+          <ion-card-content>
+            <ion-card-subtitle>Timestamp</ion-card-subtitle>
+            {{selectedAlert?.timeStamp}}
+          </ion-card-content>
+          <ion-card-content>
+            <ion-card-subtitle>Description</ion-card-subtitle>
+            {{selectedAlert?.description}}
+          </ion-card-content>
+          <ion-card-content>
+            <ion-card-subtitle>Is resolved</ion-card-subtitle>
+            {{selectedAlert?.isResolved ? 'Yes' : 'No'}}
+          </ion-card-content>
+          <ion-card-content>
+            <ion-card-subtitle>Is active</ion-card-subtitle>
+            {{selectedAlert?.isActive ? 'Yes' : 'No'}}
+          </ion-card-content>
+        </ion-card>
+
+        <div  class="alert__conatiner">
+          <ion-button expand="block" color="primary" (click)="resolveAlert(selectedAlert)" >Resolve Alert</ion-button>
+        </div>
+
+      </div>
+    </ng-template>
+  </ion-modal>
+
+  <ion-modal [isOpen]="sendAlertModal" [swipeToClose]="true">
+    <ng-template>
+      <div class="modal">
+        <h1>Raise Alert</h1>
+
+        <textarea placeholder="Description" [(ngModel)]="panicPaylload.description" ></textarea>
+
+        <div class="alert__type" >
+
+          <div  >
+            <input type="checkbox"    [(ngModel)]="panicPaylload.fire" value="Fire" />
+            <label>Fire</label>
+          </div>
+  
+          <div  >
+            <input type="checkbox" [(ngModel)]="panicPaylload.medical" value="Medical" />
+            <label >Medical</label>
+          </div>
+  
+          <div  >
+            <input type="checkbox" [(ngModel)]="panicPaylload.animal" value="Animal Rescue" />
+            <label >Animal</label>
+          </div>
+
+        </div>
+
+
+        <div  class="alert__conatiner">
+          <ion-button expand="block" color="danger" (click)="sendAlert()" >Send Panic</ion-button>
+        </div>
+
+
+      </div>
+    </ng-template>
+  </ion-modal>
+</ion-content>

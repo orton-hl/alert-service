@@ -1,9 +1,152 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>user</ion-title>
-  </ion-toolbar>
-</ion-header>
-
+<app-header title="User Registration"></app-header>
 <ion-content>
+  <form [formGroup]="newUserForm" (ngSubmit)="registerUser()">
+    <ion-item>
+      <div>
+        <ion-label>Username</ion-label>
+        <ion-input
+          type="text"
+          placeholder="username"
+          formControlName="username"
+          name="username"
+        ></ion-input>
+      </div>
+    </ion-item>
 
+    <ion-item>
+      <div>
+        <ion-label>Firstname</ion-label>
+        <ion-input
+          type="text"
+          placeholder="Firstname"
+          formControlName="firstname"
+          name="firstname"
+        ></ion-input>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div>
+        <ion-label>Lastname</ion-label>
+        <ion-input
+          type="text"
+          placeholder="Lastname"
+          formControlName="lastname"
+          name="lastname"
+        ></ion-input>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div>
+        <ion-label>Email</ion-label>
+        <ion-input
+          type="text"
+          placeholder="Email"
+          formControlName="email"
+          name="email"
+        ></ion-input>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div>
+        <ion-label>Password</ion-label>
+        <ion-input
+          type="password"
+          placeholder="password"
+          formControlName="password"
+          name="password"
+        ></ion-input>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div>
+        <ion-label>Password Confirm</ion-label>
+        <ion-input
+          type="password"
+          placeholder="confrim password"
+          formControlName="passwordConfrim"
+          name="passwordConfrim"
+        ></ion-input>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div>
+        <ion-label>Phone Number</ion-label>
+        <ion-input
+          type="text"
+          placeholder="Number"
+          formControlName="phoneNumber"
+          name="phoneNumber"
+        ></ion-input>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div>
+        <ion-label>Address</ion-label>
+        <ion-input
+          type="text"
+          placeholder="line 1"
+          formControlName="addressLine1"
+          name="addressLine1"
+        ></ion-input>
+        <ion-input
+          type="text"
+          placeholder="line 2"
+          formControlName="addressLine2"
+          name="addressLine2"
+        ></ion-input>
+        <ion-input
+          type="text"
+          placeholder="line 3"
+          formControlName="addressLine3"
+          name="addressLine3"
+        ></ion-input>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Area Code</ion-label>
+      <ion-input
+        type="text"
+        placeholder="code"
+        formControlName="postalCode"
+        name="postalCode"
+      ></ion-input>
+    </ion-item>
+
+    <div class="controls">
+      <ion-button>Cancel</ion-button>
+      <ion-button type="submit" [disabled]="!newUserForm.valid"
+        >Register</ion-button
+      >
+    </div>
+  </form>
+
+  <ion-modal [isOpen]="showRegistredModal" [swipeToClose]="true">
+    <ng-template>
+      <div>
+        
+        <ion-card  (click)="closeRegistration()">
+          <ion-card-header>
+            <ion-card-title>Registered Successfully</ion-card-title>
+          </ion-card-header>
+        
+          <ion-card-content *ngIf="registered">
+            Please try and signin with your credentials
+          </ion-card-content>
+
+          <ion-card-content *ngIf="!registered">
+            Something went wrong please try again
+          </ion-card-content>
+
+        </ion-card>
+      </div>
+    </ng-template>
+  </ion-modal>
+  
 </ion-content>

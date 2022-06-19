@@ -1,13 +1,21 @@
 <app-header title="Login" ></app-header>
-<ion-content class="auth-form">
+<ion-content>
   <section  class="page">
+    <ion-item>
+      <ion-input placeholder="User Name / Client Key"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input placeholder="Password"  type="password"></ion-input>
+    </ion-item>
+  
+    <div>
+      <ion-button expand="full" color="primary"  (click)="signIn()">Sign in</ion-button>
+    </div>
 
-    <ion-button [routerLink]="['/register']" expand="block" color="primary">Register</ion-button>
-    <span class="divider line one-line">or</span>
-    <span class="already">Already a user?</span>
-    <ion-button [routerLink]="['/sign-in']" expand="block" color="danger">Sign In</ion-button>
-
-
+    <div class="register">
+      <ion-button [routerLink]="['/register']" expand="block" color="danger">Register</ion-button>
+    </div>
   </section>
+
 </ion-content>
 

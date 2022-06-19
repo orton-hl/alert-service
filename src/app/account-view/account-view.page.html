@@ -1,20 +1,20 @@
 <app-header title="Account View" ></app-header>
 
 <ion-content>
-  <section *ngIf="isUser" class="userView" >
+  <section *ngIf="stateService.userData.isUser" class="userView" >
     <ion-card  >
       <ion-card-header>
         <ion-card-subtitle>User</ion-card-subtitle>
-        <ion-card-title>{{this.user.username}}</ion-card-title>
+        <ion-card-title>{{stateService.userData.account.username}}</ion-card-title>
       </ion-card-header>
       <ion-card-content> 
          <div>
-         <span class="label">Firstname  </span>  <span class="value">:  {{user?.firstname  }}</span> 
-         <span class="label">Lastname   </span>  <span class="value">:  {{user?.lastname   }}</span> 
-         <span class="label">Phone number</span>  <span class="value">: {{user?.phoneNumber}}</span> 
-         <span class="label">Email      </span>  <span class="value">:  {{user?.email      }}</span> 
-         <span class="label">Address    </span>  <span class="value">:  {{user?.address    }}</span>
-         <span class="label">Postal code </span> <span class="value">:  {{user?.postalCode }}</span> 
+         <span class="label">Firstname  </span>  <span class="value">:  {{stateService.userData.account?.firstname  }}</span> 
+         <span class="label">Lastname   </span>  <span class="value">:  {{stateService.userData.account?.lastname   }}</span> 
+         <span class="label">Phone number</span>  <span class="value">: {{stateService.userData.account?.phoneNumber}}</span> 
+         <span class="label">Email      </span>  <span class="value">:  {{stateService.userData.account?.email      }}</span> 
+         <span class="label">Address    </span>  <span class="value">:  {{stateService.userData.account?.address    }}</span>
+         <span class="label">Postal code </span> <span class="value">:  {{stateService.userData.account?.postalCode }}</span> 
          </div>
       </ion-card-content>
     </ion-card>
@@ -29,14 +29,14 @@
     <ion-card  >
       <ion-card-header>
         <ion-card-subtitle>Client</ion-card-subtitle>
-        <ion-card-title>{{this.user.username}}</ion-card-title>
+        <ion-card-title>{{this.`.username}}</ion-card-title>
       </ion-card-header>
       <ion-card-content> 
          <div>
-         <span class="label">Key  </span>  <span class="value">: {{user.key  }}</span> 
-         <span class="label">Name   </span>  <span class="value">: {{user.name   }}</span> 
-         <span class="label">Address    </span>  <span class="value">: {{user.address    }}</span>
-         <span class="label">Postal code </span> <span class="value">: {{user.postalCode }}</span> 
+         <span class="label">Key  </span>  <span class="value">: {{account .key  }}</span> 
+         <span class="label">Name   </span>  <span class="value">: {{account .name   }}</span> 
+         <span class="label">Address    </span>  <span class="value">: {{account .address    }}</span>
+         <span class="label">Postal code </span> <span class="value">: {{account .postalCode }}</span> 
          </div>
       </ion-card-content>
     </ion-card>

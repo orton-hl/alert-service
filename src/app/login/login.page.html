@@ -1,20 +1,22 @@
 <app-header title="Login" ></app-header>
 <ion-content>
   <section  class="page">
-    <ion-item>
-      <ion-input placeholder="User Name / Client Key"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-input placeholder="Password"  type="password"></ion-input>
-    </ion-item>
+    <form [formGroup]="signinForm" (ngSubmit)="signIn()">
+      <ion-item>
+        <ion-input formControlName="username" name="username" placeholder="User Name / Client Key"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input formControlName="password" name="password" placeholder="Password"  type="password"></ion-input>
+      </ion-item>
+    
+      <div>
+        <ion-button  expand="full" color="primary"  type="submit" [disabled]="!signinForm.valid">Sign in</ion-button>
+      </div>
   
-    <div>
-      <ion-button expand="full" color="primary"  (click)="signIn()">Sign in</ion-button>
-    </div>
-
-    <div class="register">
-      <ion-button [routerLink]="['/register']" expand="block" color="danger">Register</ion-button>
-    </div>
+      <div class="register">
+        <ion-button [routerLink]="['/register']" expand="block" color="danger">Register</ion-button>
+      </div>
+    </form>
   </section>
 
 </ion-content>

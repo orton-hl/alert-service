@@ -2,6 +2,7 @@ export const environment = {
   production: false,
   apiBaseURL : "http://127.0.0.1:3000/armed-response/v1/api",
   apiEndpoints: {
+    login : '/login',
     clients_get_all_client: '/clients/get-all-client',
     users_get_user: '/users/get-user',
     users_update_user: '/users/update-user',

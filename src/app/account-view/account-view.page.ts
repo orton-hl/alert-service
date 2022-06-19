@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from '../models/client.model';
 import { User } from '../models/user.model';
+import { StateServiceService } from '../services/state-service.service';
 
 @Component({
   selector: 'app-account-view',
@@ -8,38 +9,13 @@ import { User } from '../models/user.model';
   styleUrls: ['./account-view.page.scss'],
 })
 export class AccountViewPage implements OnInit {
-  user:  any//Client | User | undefined = undefined;
+  account: any;
   isUser : Boolean = false
 
-  constructor() {}
+  constructor(public stateService : StateServiceService) {}
 
   ngOnInit() {
-    // this.user = {
-    //   id: '',
-    //   username: 'user name',
-    //   email: '',
-    //   firstname: '',
-    //   lastname: ' ',
-    //   phoneNumber: ' ',
-    //   password: '',
-    //   postalCode: '',
-    //   address: `> ng.cmd generate service state-service --project=app
-    //   CREATE src/app/state-service.service.spec.ts (388 bytes)
-    //   CREATE src/app/state-service.service.ts (141 bytes)`,
-    //   isActive: true,
-    // };
-
-    this.user = {
-      id: '',
-      username: 'user name',
-      key: '',
-      name: '',
-      postalCode: '',
-      address: `> ng.cmd generate service state-service --project=app
-      CREATE src/app/state-service.service.spec.ts (388 bytes)
-      CREATE src/app/state-service.service.ts (141 bytes)`,
-      isActive: true,
-      password : ''
-    };
+    this.account = this.stateService.userData.account
+    this.isUser = this.stateService.userData.isUser
   }
 }

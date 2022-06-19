@@ -40,7 +40,6 @@ export class UserPage implements OnInit {
   ngOnInit() {}
 
   async registerUser() {
-    console.log(this.newUserForm.value);
     let payload = this.generatePayload();
     const loading = await this.loadingController.create({
       message: 'Please wait...',
@@ -48,7 +47,7 @@ export class UserPage implements OnInit {
 
     loading.present();
 
-    return this.apiService
+    this.apiService
       .registerUser(payload)
       .toPromise()
       .then((data) => {
@@ -57,6 +56,7 @@ export class UserPage implements OnInit {
         this.registered = true;
       })
       .catch(() => {
+        loading.dismiss();
         this.showRegistredModal = true;
         this.registered = false;
       });

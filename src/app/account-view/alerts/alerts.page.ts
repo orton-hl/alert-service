@@ -1,6 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { Alert } from 'src/app/models/alert.model';
+import { APIServiceService } from 'src/app/services/api-service.service';
+import { StateServiceService } from 'src/app/services/state-service.service';
 
 @Component({
   selector: 'app-alerts',
@@ -9,54 +12,39 @@ import { Alert } from 'src/app/models/alert.model';
 })
 export class AlertsPage implements OnInit {
   showAlert = false;
-  sendAlertModal = true;
+  sendAlertModal = false;
 
   panicPaylload = {
-    fire : true,
+    fire: true,
     animal: false,
     medical: true,
-    description : ""
-  }
+    description: '',
+  };
 
   selectedAlert: Alert = undefined;
 
-  alerts: Alert[] = [
-    {
-      id: 'string',
-      userId: 'string',
-      clientId: 'string',
-      emergencyType: 3,
-      description: 'string    vfdvfver regergregege rger ege vfegv erg erge',
-      isResolved: false,
-      isActive: false,
-      timeStamp: 'string',
-    },
-    {
-      id: 'string',
-      userId: 'string',
-      clientId: 'string',
-      emergencyType: 3,
-      description: 'string',
-      isResolved: true,
-      isActive: false,
-      timeStamp: 'string',
-    },
-    {
-      id: 'string',
-      userId: 'string',
-      clientId: 'string',
-      emergencyType: 3,
-      description: 'string',
-      isResolved: true,
-      isActive: false,
-      timeStamp: 'string',
-    },
-  ];
+  alerts: Alert[] = [];
 
-  constructor() {}
+  constructor(
+    private apiService: APIServiceService,
+    private stateService: StateServiceService,
+    private router: Router,
+  ) {}
 
   ngOnInit() {
-    // this.selectedAlert = this.alerts[0];
+    this.loadData();
+  }
+
+  loadData(){
+    try {
+      this.apiService
+      .getAllAlerts(this.stateService.userData.account.id)
+      .subscribe( data => {
+        this.alerts = data
+      });
+    } catch (error) {
+      this.router.navigate([''])
+    }
   }
 
   toggleModal(alert: Alert) {
@@ -64,17 +52,48 @@ export class AlertsPage implements OnInit {
     this.showAlert = !this.showAlert;
   }
 
-  sendAlert(){
-    this.sendAlertModal = !this.sendAlertModal
-    console.log(this.panicPaylload)
-
+  sendAlert() {
+    this.apiService
+      .postAlert(this.genratePayload())
+      .toPromise()
+      .then((data) => {
+        this.sendAlertModal = !this.sendAlertModal;
+        console.log(data);
+      })
+      .catch((err) => {
+        this.sendAlertModal = !this.sendAlertModal;
+        console.log(err);
+      });
   }
 
-  toggleSendModal(){
-    this.sendAlertModal = !this.sendAlertModal
+  determineEmergencyType(): string {
+    let type = '';
+    type += this.panicPaylload.animal ? '1' : '0';
+    type += this.panicPaylload.medical ? '1' : '0';
+    type += this.panicPaylload.fire ? '1' : '0';
+    return type;
   }
 
-  resolveAlert(alert : Alert){
-    console.log(alert)
+  genratePayload(): Alert {
+    let payload: Alert = {
+      description: this.panicPaylload.description,
+      isActive: true,
+      isResolved: false,
+      timeStamp: new Date().getTime().toString(),
+      userId: this.stateService.userData.account.id,
+      emergencyType: this.determineEmergencyType(),
+    };
+    return payload;
+  }
+
+  toggleSendModal() {
+    this.sendAlertModal = !this.sendAlertModal;
+    this.loadData();
+  }
+
+  resolveAlert(alert: Alert) {
+    this.apiService.resolveAlert(alert).toPromise()
+      .then(() => {this.loadData()})
+      .catch(() => {this.loadData()})
   }
 }

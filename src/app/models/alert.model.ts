@@ -1,8 +1,8 @@
 export type Alert = {
-  id: string;
+  id?: string;
   userId: string;
-  clientId: string;
-  emergencyType: number;
+  clientId?: string;
+  emergencyType: string;
   description: string;
   isResolved: boolean;
   isActive: boolean;

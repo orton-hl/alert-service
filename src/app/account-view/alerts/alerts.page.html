@@ -12,11 +12,12 @@
     </div>
 
     <ion-list>
+      <span class="list__header">Alert History</span>
       <ion-card *ngFor="let alert of alerts" (click)="toggleModal(alert)">
         <ion-card-content>
           <div class="alert__card">
-            <span>time stamps</span>
-            <span>Description</span>
+            <span>{{alert.timeStamp | date}}</span>
+            <span>{{alert.description}}</span>
             <span [ngClass]=" alert.isResolved ? 'resolved' : 'unresolved'"></span>
           </div>
         </ion-card-content>

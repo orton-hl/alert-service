@@ -20,6 +20,7 @@ export const environment = {
     emergency_contacts_delete_contact: '/emergency-contacts/delete-contact',
     emergency_contacts_update_contact: '/emergency-contacts/update-contact',
     alerts_get_alert: '/alerts/get-alert',
+    alerts_get_alert_for: '/alerts/get-alerts-for',
     alerts_send_alert: '/alerts/send-alert',
     alerts_delete_alert: '/alerts/delete-alert',
     alerts_update_alert: '/alerts/update-alert',

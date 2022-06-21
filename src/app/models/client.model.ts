@@ -2,15 +2,12 @@
 export type Client = {
  
   
-  id: string;
+  id?: string;
   
-  username: string;
   
-  key: string;
+  key?: string;
   
   name: string;
-  
-  password: string;
   
   postalCode: string;
   

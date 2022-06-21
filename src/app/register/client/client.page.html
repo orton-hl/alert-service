@@ -1,9 +1,80 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>client</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header title="Client Registration"></app-header>
+
 
 <ion-content>
 
+  <form [formGroup]="clientForm" (ngSubmit)="registerClient()">
+    <ion-item>
+      <div>
+        <ion-label>Client Name</ion-label>
+        <ion-input
+          type="text"
+          placeholder="Client Name"
+          formControlName="name"
+          name="name"
+        ></ion-input>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <div>
+        <ion-label>Address</ion-label>
+        <ion-input
+          type="text"
+          placeholder="line 1"
+          formControlName="addressLine1"
+          name="addressLine1"
+        ></ion-input>
+        <ion-input
+          type="text"
+          placeholder="line 2"
+          formControlName="addressLine2"
+          name="addressLine2"
+        ></ion-input>
+        <ion-input
+          type="text"
+          placeholder="line 3"
+          formControlName="addressLine3"
+          name="addressLine3"
+        ></ion-input>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Area Code</ion-label>
+      <ion-input
+        type="text"
+        placeholder="code"
+        formControlName="postalCode"
+        name="postalCode"
+      ></ion-input>
+    </ion-item>
+
+    <div class="controls">
+      <ion-button [routerLink]="['']" >Cancel</ion-button>
+      <ion-button type="submit" [disabled]="!clientForm.valid"
+        >Register</ion-button
+      >
+    </div>
+  </form>
+
+  <ion-modal [isOpen]="showRegistredModal" [swipeToClose]="true">
+    <ng-template>
+      <div>
+        
+        <ion-card  (click)="closeRegistration()">
+          <ion-card-header>
+            <ion-card-title>{{  registered ? 'Registered Successfully' : 'Error'}}  </ion-card-title>
+          </ion-card-header>
+        
+          <ion-card-content>
+            {{registered ? 'Please try and signin with your credentials' : 'Something went wrong please try again'}}
+            <br>  {{  registered ? 'your key is : ' + key  : 'Error'}}
+          </ion-card-content>
+
+        </ion-card>
+      </div>
+    </ng-template>
+  </ion-modal>
+  
 </ion-content>
